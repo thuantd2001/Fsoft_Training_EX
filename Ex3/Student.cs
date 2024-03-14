@@ -9,6 +9,15 @@ namespace Ex3
 {
     public class Student
     {
+      
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public int Priority { get; set; }
+
+        public int CourseId { get; set; }
+        public Course Course { get; set; }
         public Student(int id, string name, string address, int priority, int courseId, Course course)
         {
             Id = id;
@@ -18,15 +27,6 @@ namespace Ex3
             CourseId = courseId;
             Course = course;
         }
-
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public int Priority { get; set; }
-
-        public int CourseId { get; set; }
-        public Course Course { get; set; }
-
 
         public override string ToString()
         {

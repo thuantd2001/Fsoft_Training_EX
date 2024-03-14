@@ -8,6 +8,10 @@ namespace Ex4
 {
     public class Family
     {
+       
+        public int HomeId { get; set; }
+        public int NumberOfMember { get; set; }
+        List<Member> Members { get; set; }
         public Family()
         {
         }
@@ -15,13 +19,9 @@ namespace Ex4
         public Family(int homeId, List<Member> members)
         {
             HomeId = homeId;
-        
+
             Members = members;
         }
-
-        public int HomeId { get; set; }
-        public int NumberOfMember { get; set; }
-        List<Member> Members { get; set; }
 
         public override string? ToString()
         {

@@ -46,21 +46,21 @@
             var value = Console.ReadLine().Trim();
             return value;
         }
-        public int InputInt(string mess, int min= -999, int max=999)
+        public int InputInt(string mess, int min = -999, int max = 999)
         {
             Console.WriteLine(mess);
             while (true)
             {
                 try
                 {
-                   
+
 
                     var input = Console.ReadLine();
                     var value = Convert.ToInt32(input);
                     if (value < min || value > max) throw new Exception($"Value must be more than {max} and less than {min}");
                     return value;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.Error.WriteLine(ex.Message);
                     Console.WriteLine($"Please {mess} again !! ");
@@ -74,7 +74,7 @@
             {
                 try
                 {
-                   
+
                     var input = Console.ReadLine();
                     var value = Convert.ToDouble(input);
                     if (value < min || value > max) throw new Exception($"Value must be more than {max} and less than {min}");
@@ -87,5 +87,7 @@
                 }
             }
         }
+
+       
     }
 }

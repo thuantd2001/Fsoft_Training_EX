@@ -8,6 +8,12 @@ namespace Ex4
 {
     public class Member
     {
+      
+
+        public int Id { get; set; }
+        public string FullName { get; set; }
+        public int Age { get; set; }
+        public string Job { get; set; }
         public Member()
         {
         }
@@ -19,12 +25,6 @@ namespace Ex4
             Age = age;
             Job = job;
         }
-
-        public int Id { get; set; }
-        public string FullName { get; set; }
-        public int Age { get; set; }
-        public string Job { get; set; }
-
         public override string? ToString()
         {
             return $"Id-{Id}; FullName-{FullName}; Age-{Age}; Job-{Job}";
