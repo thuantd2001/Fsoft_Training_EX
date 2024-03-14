@@ -48,11 +48,12 @@
         }
         public int InputInt(string mess, int min= -999, int max=999)
         {
+            Console.WriteLine(mess);
             while (true)
             {
                 try
                 {
-                    Console.WriteLine(mess);
+                   
 
                     var input = Console.ReadLine();
                     var value = Convert.ToInt32(input);
@@ -68,11 +69,12 @@
         }
         public double InputDouble(string mess, int min = -999, int max = 999)
         {
+            Console.WriteLine(mess);
             while (true)
             {
                 try
                 {
-                    Console.WriteLine(mess);
+                   
                     var input = Console.ReadLine();
                     var value = Convert.ToDouble(input);
                     if (value < min || value > max) throw new Exception($"Value must be more than {max} and less than {min}");
