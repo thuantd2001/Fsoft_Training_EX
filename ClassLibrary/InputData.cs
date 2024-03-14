@@ -1,4 +1,6 @@
-﻿namespace ClassLibrary
+﻿using System.Globalization;
+
+namespace ClassLibrary
 {
     public sealed class SingletonInputData
     {
@@ -87,7 +89,27 @@
                 }
             }
         }
+        public DateTime InputDateTime(string mess)
+        {
+            Console.WriteLine(mess);
+            while (true)
+            {
+                try
+                {
+                    string enterDob = Console.ReadLine();
+                    DateTime value = DateTime.ParseExact(enterDob, "MM-dd-yyyy", CultureInfo.InvariantCulture); // 
+
+                    return value;
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.Message);
+                    Console.WriteLine($"Please {mess} again !! ");
+                }
+            }
+        }
 
        
+
     }
 }
