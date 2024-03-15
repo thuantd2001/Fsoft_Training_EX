@@ -26,17 +26,13 @@ namespace Ex13
 
 
             list.Add(new Experience(1, "thuan", DateTime.ParseExact("12-12-2012", "MM-dd-yyyy", CultureInfo.InvariantCulture), "a@gmail", EnumEmployeeType.Experience, certificates,
-                2, "java"
-
-                ));
+                2, "java"));
             list.Add(new Experience(2, "xxx", DateTime.ParseExact("12-12-2012", "MM-dd-yyyy", CultureInfo.InvariantCulture), "a@gmail", EnumEmployeeType.Experience, certificates,
-            2, "java"
-
-            ));
-            list.Add(new Experience(1, "vvvv", DateTime.ParseExact("12-12-2012", "MM-dd-yyyy", CultureInfo.InvariantCulture), "a@gmail", EnumEmployeeType.Experience, certificates,
-            2, "java"
-
-            ));
+                2, "java"));
+            list.Add(new Experience(3, "vvvv", DateTime.ParseExact("12-12-2012", "MM-dd-yyyy", CultureInfo.InvariantCulture), "a@gmail", EnumEmployeeType.Experience, certificates,
+                2, "java"));
+            list.Add(new Intern(4, "iii", DateTime.ParseExact("12-12-2012", "MM-dd-yyyy", CultureInfo.InvariantCulture), "a@gmail", EnumEmployeeType.Intern, certificates,
+                "java", 2, "FPT"));
         }
         public void Menu()
         {
@@ -58,7 +54,8 @@ namespace Ex13
                         DeleteItem(idDel);
                         break;
                     case 4:
-                        DisplayByType((EnumEmployeeType.Experience));
+                        var typeE = _singletonInputData.InputInt("Enter the type ", 0, 2);
+                        DisplayByType((EnumEmployeeType)typeE);
                         break;
                     default:
                         Console.WriteLine("------------------------");
@@ -108,12 +105,12 @@ namespace Ex13
                 for (var j = 0; j < numberOfMember; j++)
                 {
 
-                    for (var i = 0; i < cers.Count; i++)
+                    for (var i = 0; i < certificates.Count; i++)
                     {
-                        Console.WriteLine($"{i + 1} - {cers[i].CertificateName} - {cers[i].Rank} ");
+                        Console.WriteLine($"{i + 1} - {certificates[i].CertificateName} - {certificates[i].Rank} ");
                     }
-                    var classNumber = _singletonInputData.InputInt("Enter the number the Certificate", 1, cers.Count);
-                    var c = cers[classNumber - 1];
+                    var classNumber = _singletonInputData.InputInt("Enter the number the Certificate", 1, certificates.Count);
+                    var c = certificates[classNumber - 1];
 
                     var date = _singletonInputData.InputDateTime("Enter the date get certificate (MM-dd-yyyy): ");
                     Certificate cer = new Certificate(c, date);
@@ -149,7 +146,7 @@ namespace Ex13
         }
         public int SearchIndexEmployee(int id)
         {
-            var result = list.IndexOf(list.Find(p => p.Id == id));
+            var result = list.IndexOf(list.Where(p => p.Id == id).FirstOrDefault());
             if (result != -1)
             {
                 return result;
@@ -179,12 +176,12 @@ namespace Ex13
                 for (var j = 0; j < numberOfMember; j++)
                 {
 
-                    for (var i = 0; i < cers.Count; i++)
+                    for (var i = 0; i < certificates.Count; i++)
                     {
-                        Console.WriteLine($"{i + 1} - {cers[i].CertificateName} - {cers[i].Rank} ");
+                        Console.WriteLine($"{i + 1} - {certificates[i].CertificateName} - {certificates[i].Rank} ");
                     }
-                    var classNumber = _singletonInputData.InputInt("Enter the number the Certificate", 1, cers.Count);
-                    var c = cers[classNumber - 1];
+                    var classNumber = _singletonInputData.InputInt("Enter the number the Certificate", 1, certificates.Count);
+                    var c = certificates[classNumber - 1];
 
                     var date = _singletonInputData.InputDateTime("Enter the date get certificate (MM-dd-yyyy): ");
                     Certificate cer = new Certificate(c, date);
@@ -241,89 +238,45 @@ namespace Ex13
         public void DisplayByType(EnumEmployeeType type)
         {
             var result = list.Where(l => l.EmployeeType == type).ToList();
-            if(type == EnumEmployeeType.Experience)
+            if (type == EnumEmployeeType.Experience)
             {
-                List<Experience> experienceList = new List<Experience>();
+
+
+                foreach (var employee in result)
+                {
+
+                    Experience ex = (Experience)employee;
+                    // Cast the employee to Experience
+                    Console.WriteLine($"{ex.Id}, {ex.FullName}, {ex.DOB.ToString("MM-dd-yyyy")}, {ex.Email}, {ex.EmployeeType.ToString()},\nYear experient {ex.YearOfExperience}, Pro skill {ex.ProSkill} ");
+                }
+            }
+            else if (type == EnumEmployeeType.Fresher)
+            {
+
+
+                foreach (var employee in result)
+                {
+
+                    Fresher fr = (Fresher)employee;
+                    // Cast the employee 
+                    Console.WriteLine($"{fr.Id}, {fr.FullName}, {fr.DOB.ToString("MM-dd-yyyy")}, {fr.Email}, {fr.EmployeeType.ToString()},\nGranduate {fr.GraduateDate.ToString("MM-dd-yyyy")}, Rank: {fr.GraduationRank} ");
+                }
+            }
+            else if (type == EnumEmployeeType.Intern)
+            {
+                ;
 
                 foreach (var employee in result)
                 {
                     // Check if employee has experience data (e.g., YearOfExperience > 0)
-                    Experience ex = (Experience)employee;
+                    Intern ex = (Intern)employee;
                     // Cast the employee to Experience
-                    Console.WriteLine($"{ex.Id}, {ex.FullName}, {ex.DOB.ToString()}, {ex.Email}, {ex.EmployeeType.ToString()}, {ex.YearOfExperience}, {ex.ProSkill} ");
+                    Console.WriteLine($"{ex.Id}, {ex.FullName}, {ex.DOB.ToString("MM-dd-yyyy")}, {ex.Email}, {ex.EmployeeType.ToString()},\nMajor {ex.Major},Semester {ex.Semester}, UniverName: {ex.UniversityName} ");
                 }
             }
-
-
         }
 
-        //public Fresher InputFresher()
-        //{
-
-        //    var id = InputId();
-        //    var name = _singletonInputData.InputString("Enter the name: ");
-        //    var dob = _singletonInputData.InputDateTime("Enter the Dob (MM-dd-yyyy): ");
-
-        //    var email = _singletonInputData.InputString("Enter email");
-        //    var type = _singletonInputData.InputInt("0-Experience; 1-Fresher; 2-Intern", 0, 2);
-
-        //    var numberOfMember = _singletonInputData.InputInt("Enter the number of certificate", 1, 99);
-        //    List<Certificate> cers = new List<Certificate>();
-        //    for (var j = 0; j < numberOfMember; j++)
-        //    {
-
-        //        for (var i = 0; i < cers.Count; i++)
-        //        {
-        //            Console.WriteLine($"{i + 1} - {cers[i].CertificateName} - {cers[i].Rank} ");
-        //        }
-        //        var classNumber = _singletonInputData.InputInt("Enter the number the Certificate", 1, cers.Count);
-        //        var c = cers[classNumber - 1];
-
-        //        var date = _singletonInputData.InputDateTime("Enter the date get certificate (MM-dd-yyyy): ");
-        //        Certificate cer = new Certificate(c, date);
-        //        cers.Add(cer);
-        //    }
-
-        //    DateTime granduaDate = _singletonInputData.InputDateTime("Enter the Date (MM-dd-yyyy): ");
-        //    var rank = _singletonInputData.InputInt("Enter the s ");
-        //    Fresher fresh = new Fresher(id, name, dob, email, (EnumEmployeeType)type, cers, granduaDate, rank);
-
-        //    return fresh;
-        //}
-
-        //public Intern InputIntern()
-        //{
-
-        //    var id = InputId();
-        //    var name = _singletonInputData.InputString("Enter the name: ");
-        //    var dob = _singletonInputData.InputDateTime("Enter the Dob (MM-dd-yyyy): ");
-
-        //    var email = _singletonInputData.InputString("Enter email");
-        //    var type = _singletonInputData.InputInt("0-Experience; 1-Fresher; 2-Intern", 0, 2);
-
-        //    var numberOfMember = _singletonInputData.InputInt("Enter the number of certificate", 1, 99);
-        //    List<Certificate> cers = new List<Certificate>();
-        //    for (var j = 0; j < numberOfMember; j++)
-        //    {
-
-        //        for (var i = 0; i < cers.Count; i++)
-        //        {
-        //            Console.WriteLine($"{i + 1} - {cers[i].CertificateName} - {cers[i].Rank} ");
-        //        }
-        //        var classNumber = _singletonInputData.InputInt("Enter the number the Certificate", 1, cers.Count);
-        //        var c = cers[classNumber - 1];
-
-        //        var date = _singletonInputData.InputDateTime("Enter the date get certificate (MM-dd-yyyy): ");
-        //        Certificate cer = new Certificate(c, date);
-        //        cers.Add(cer);
-        //    }
-
-        //    var year = _singletonInputData.InputInt("\tEnter the Id", 0);
-        //    var proskill = _singletonInputData.InputString("Enter the skill ");
-        //    Fresher e = new Experience(id, name, dob, email, (EnumEmployeeType)type, cers, year, proskill);
-
-        //    return e;
-        //}
+       
 
     }
 }
