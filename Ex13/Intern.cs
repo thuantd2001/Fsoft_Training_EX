@@ -8,8 +8,8 @@ namespace Ex13
 {
    public class Intern:Employee
     {
-        public Intern(int id, string fullName, DateTime dOB, string email, EnumEmployeeType employeeType, List<Certificate> certificates, string major, int semester, string universityName) 
-            : base(id, fullName, dOB, email, employeeType, certificates)
+        public Intern(int id, string fullName, DateTime dOB, string email, string phone,EnumEmployeeType employeeType, List<Certificate> certificates, string major, int semester, string universityName) 
+            : base(id, fullName, dOB, email, phone, employeeType, certificates)
         {
             Major = major;
             Semester = semester;

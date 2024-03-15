@@ -13,7 +13,8 @@ namespace Ex13
         public int YearOfExperience { get; set; }
         public string ProSkill { get; set; }
 
-        public Experience(int id, string fullName, DateTime dOB, string email, EnumEmployeeType employeeType, List<Certificate> certificates, int yearOfExperience, string proskill) : base(id, fullName, dOB, email, employeeType, certificates)
+        public Experience(int id, string fullName, DateTime dOB, string email, string phone, EnumEmployeeType employeeType,
+            List<Certificate> certificates, int yearOfExperience, string proskill) : base(id, fullName, dOB, email, phone, employeeType, certificates)
         {
             YearOfExperience = yearOfExperience;
             ProSkill = proskill;

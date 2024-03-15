@@ -14,6 +14,7 @@ namespace Ex13
         public string FullName { get; set; }
         public DateTime DOB { get; set; }
         public string Email { get; set; }
+        public string Phone { get; set; }
         public EnumEmployeeType EmployeeType { get; set; }
         public List<Certificate> Certificates { get; set; }
         
@@ -23,12 +24,13 @@ namespace Ex13
         {
         }
 
-        protected Employee(int id, string fullName, DateTime dOB, string email, EnumEmployeeType employeeType, List<Certificate> certificates)
+        protected Employee(int id, string fullName, DateTime dOB, string email, string phone, EnumEmployeeType employeeType, List<Certificate> certificates)
         {
             Id = id;
             FullName = fullName;
             DOB = dOB;
             Email = email;
+            Phone = phone;
             EmployeeType = employeeType;
             Certificates = certificates;
         }

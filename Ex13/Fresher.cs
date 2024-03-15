@@ -8,9 +8,9 @@ namespace Ex13
 {
     public class Fresher : Employee
     {
-        public Fresher(int id, string fullName, DateTime dOB, string email, EnumEmployeeType employeeType,
+        public Fresher(int id, string fullName, DateTime dOB, string email, string phone, EnumEmployeeType employeeType,
             List<Certificate> certificates, DateTime graduateDate, int granduationRank) 
-            : base(id, fullName, dOB, email, employeeType, certificates)
+            : base(id, fullName, dOB, email, phone, employeeType, certificates)
         {
             GraduateDate =graduateDate;
             GraduationRank = granduationRank;

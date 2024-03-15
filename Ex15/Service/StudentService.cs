@@ -1,11 +1,12 @@
 ﻿using Ex15.Entity;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Globalization;
+using ClassLibrary;
 
 
 namespace Ex15.Service
 {
-    internal class StudentService
+    internal class StudentService:BaseClass<Student>
     {
         public List<Department> departments = new List<Department>();
         public List<Student> students = new List<Student>() {};
@@ -42,51 +43,51 @@ namespace Ex15.Service
             learningOutCome.Add(new LearningOutcome(1, 1, students[2].Id));
 
         }
-        //public Student InputStudent()
-        //{
-        //    try
-        //    {
-              
-        //        string id = new Guid().ToString();
-        //        Console.WriteLine("Enter FullName: ");
-        //        string fullName = Console.ReadLine().Trim();
-        //        Console.WriteLine("Enter dob(MM-dd-yyyy): ");
-        //        string enterDob = Console.ReadLine();
-        //        DateTime dob = DateTime.ParseExact(enterDob, "MM-dd-yyyy", CultureInfo.InvariantCulture); // 
-        //        Console.WriteLine("Enter year of admission");
-        //        int yearOfAdmission = Convert.ToInt32(Console.ReadLine());
-        //        Console.WriteLine("Enter Entry point(double)");
-        //        double entryPoint = Convert.ToDouble(Console.ReadLine());
-        //        Console.WriteLine("Enter number of Learning outcome");
-        //        int number = Convert.ToInt32(Console.ReadLine());
+        public Student InputStudent()
+        {
+            try
+            {
 
-        //        //learning outcome
-        //        for (int i = 0; i < number; i++)
-        //        {
-        //            Console.WriteLine("  -enter the score(double): ");
-        //            double score = Convert.ToDouble(Console.ReadLine());
-        //            Console.WriteLine("  -enter the semester(int): ");
-        //            int semester = Convert.ToInt32(Console.ReadLine());
+                string id = new Guid().ToString();
+                Console.WriteLine("Enter FullName: ");
+                string fullName = Console.ReadLine().Trim();
+                Console.WriteLine("Enter dob(MM-dd-yyyy): ");
+                string enterDob = Console.ReadLine();
+                DateTime dob = DateTime.ParseExact(enterDob, "MM-dd-yyyy", CultureInfo.InvariantCulture); // 
+                Console.WriteLine("Enter year of admission");
+                int yearOfAdmission = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter Entry point(double)");
+                double entryPoint = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter number of Learning outcome");
+                int number = Convert.ToInt32(Console.ReadLine());
 
-        //            learningOutCome.Add(new LearningOutcome(score, semester, id));
-        //        }
-        //        //
-        //        int departmentId = 0;
-               
-        //        Student st = new Student(id, fullName, dob, yearOfAdmission, entryPoint,departmentId );
-                
-        //        return st;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Error");
-        //        if (e.InnerException != null)
-        //        {
-        //            Console.WriteLine("message: " + e.Message);
-        //        }
-        //        return null;
-        //    }
-        //}
+                //learning outcome
+                for (int i = 0; i < number; i++)
+                {
+                    Console.WriteLine("  -enter the score(double): ");
+                    double score = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("  -enter the semester(int): ");
+                    int semester = Convert.ToInt32(Console.ReadLine());
+
+                    learningOutCome.Add(new LearningOutcome(score, semester, id));
+                }
+                //
+                int departmentId = 0;
+
+                Student st = new Student(id, fullName, dob, yearOfAdmission, entryPoint, departmentId);
+
+                return st;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error");
+                if (e.InnerException != null)
+                {
+                    Console.WriteLine("message: " + e.Message);
+                }
+                return null;
+            }
+        }
 
         //public int ChoseDepartment()
         //{
@@ -151,10 +152,10 @@ namespace Ex15.Service
         //        string formattedGpa = gpa.ToString("F2"); // Format GPA to two decimal places
 
         //        Console.WriteLine(s.ToString() + " \nGPA: " + formattedGpa);
-             
+
         //    }
         //}
-   
+
         //public void DisplayInServiceStudent()
         //{
         //    foreach (var s in inServiceStudents)
@@ -174,7 +175,7 @@ namespace Ex15.Service
         //{
         //    double total = learningOutCome.Where(l=> l.StudentId.Equals(s.Id)).Sum( l => l.Score);
         //    int count = learningOutCome.Where(l=> l.StudentId.Equals(s.Id)).Count();
-            
+
         //    return Math.Round(total / count);
         //}
 

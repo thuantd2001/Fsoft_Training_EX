@@ -1,4 +1,6 @@
 ﻿using System.Globalization;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ClassLibrary
 {
@@ -109,7 +111,125 @@ namespace ClassLibrary
             }
         }
 
-       
 
+        public string InputEndWith(string mess, params string[] end)
+        {
+            Console.WriteLine(mess);
+            while (true)
+            {
+                try
+                {
+                    var value = Console.ReadLine().Trim();
+                    bool flag = false;
+                    StringBuilder sb = new StringBuilder();
+                    if (end != null && end.Length > 0)
+                    {
+                        for (var i = 0; i < end.Count(); i++)
+                        {
+                            if (i < (end.Count() - 1))
+                            {
+                                sb.Append($"{end[i]} or ");
+                            }
+                            else
+                            {
+                                sb.Append(end[i]);
+                            }
+                            if (value.EndsWith(end[i]))
+                            {
+                                flag = true;
+                            }
+                         
+
+                        }
+                    }
+
+                    if (!flag)
+                    {
+                        throw new Exception($"Value must be end with {sb.ToString()}");
+                    }
+
+                    return value;
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.Message);
+                    Console.WriteLine($"Please {mess} again !! ");
+                }
+            }
+
+
+        }
+        public string InputStartWith(string mess, params string[] start)
+        {
+            Console.WriteLine(mess);
+            while (true)
+            {
+                try
+                {
+                    bool flag = false;
+                    var value = Console.ReadLine().Trim();
+                    StringBuilder sb = new StringBuilder();
+                    if (start != null && start.Length > 0)
+                    {
+                        for (var i = 0; i < start.Count(); i++)
+                        {
+                            if (i < (start.Count() - 1))
+                            {
+                                sb.Append($"{start[i]} or");
+                            }
+                            else
+                            {
+                                sb.Append(start[i]);
+                            }
+
+                            if (value.StartsWith(start[i]))
+                            {
+                                flag = true;
+                            }
+                        }
+                    }
+                    if (!flag)
+                    {
+                        throw new Exception($"Value must be end with {sb.ToString()}");
+                    }
+
+                    return value;
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.Message);
+                    Console.WriteLine($"Please {mess} again !! ");
+                }
+            }
+
+
+        }
+
+        public string InputWithRegex(string mess, string messErorr, string regex)
+        {
+            Console.WriteLine(mess);
+            while (true)
+            {
+                try
+                {
+
+                    var value = Console.ReadLine().Trim();
+
+                    bool isNumeric = Regex.IsMatch(value, regex);
+
+                    if (!isNumeric)
+                    {
+                        throw new Exception(messErorr);
+                    }
+
+                    return value;
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.Message);
+                    Console.WriteLine($"Please {mess} again !! ");
+                }
+            }
+        }
     }
 }
