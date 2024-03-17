@@ -8,7 +8,7 @@ namespace Ex15.Entity
 {
     internal class Student
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string FullName { get; set; }
         public DateTime DOB { get; set; }
         public int YearOfAdmission { get; set; }
@@ -19,7 +19,7 @@ namespace Ex15.Entity
         {
         }
 
-        public Student(string id, string fullName, DateTime dOB, int yearOfAdmission, double entryPoint, int departmentId)
+        public Student(int id, string fullName, DateTime dOB, int yearOfAdmission, double entryPoint, int departmentId)
         {
             Id = id;
             FullName = fullName;

@@ -1,4 +1,5 @@
 ﻿using ClassLibrary;
+using Ex13.Enum;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,7 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ex13
+namespace Ex13.Service
 {
     public class Manage : BaseClass<Employee>
     {
@@ -25,7 +26,7 @@ namespace Ex13
             certificates.Add(new Certificate(4, "king", 4));
 
 
-            list.Add(new Experience(1, "thuan", DateTime.ParseExact("12-12-2012", "MM-dd-yyyy", CultureInfo.InvariantCulture), "a@gmail","0000011", EnumEmployeeType.Experience, certificates,
+            list.Add(new Experience(1, "thuan", DateTime.ParseExact("12-12-2012", "MM-dd-yyyy", CultureInfo.InvariantCulture), "a@gmail", "0000011", EnumEmployeeType.Experience, certificates,
                 2, "java"));
             list.Add(new Experience(2, "xxx", DateTime.ParseExact("12-12-2012", "MM-dd-yyyy", CultureInfo.InvariantCulture), "a@gmail", "0000011", EnumEmployeeType.Experience, certificates,
                 2, "java"));
@@ -95,8 +96,8 @@ namespace Ex13
             var name = _singletonInputData.InputString("Enter the name: ");
             var dob = _singletonInputData.InputDateTime("Enter the Dob (MM-dd-yyyy): ");
 
-            var email = _singletonInputData.InputEndWith("Enter email","@gmail.com","@fpt.com");
-            var phone = _singletonInputData.InputWithRegex("Enter phone","Charactor must be number and length = 5", @"^\d{5}$");
+            var email = _singletonInputData.InputEndWith("Enter email", "@gmail.com", "@fpt.com");
+            var phone = _singletonInputData.InputWithRegex("Enter phone", "Charactor must be number and length = 5", @"^\d{5}$");
             var type = _singletonInputData.InputInt("0-Experience; 1-Fresher; 2-Intern", 0, 2);
 
             var numberOfMember = _singletonInputData.InputInt("Enter the number of certificate", 0, 99);
@@ -122,7 +123,7 @@ namespace Ex13
             {
                 var year = _singletonInputData.InputInt("Enter the year", 0);
                 var proskill = _singletonInputData.InputString("Enter the skill ");
-                Experience e = new Experience(id, name, dob, email, phone,(EnumEmployeeType)type, cers, year, proskill);
+                Experience e = new Experience(id, name, dob, email, phone, (EnumEmployeeType)type, cers, year, proskill);
                 list.Add(e);
                 Console.WriteLine($"{Employee.EmployeeCount} new employee ");
                 return;
@@ -131,7 +132,7 @@ namespace Ex13
             {
                 DateTime granduaDate = _singletonInputData.InputDateTime("Enter the Date (MM-dd-yyyy): ");
                 var rank = _singletonInputData.InputInt("Enter the s ");
-                Fresher fresh = new Fresher(id, name, dob, email, phone,(EnumEmployeeType)type, cers, granduaDate, rank);
+                Fresher fresh = new Fresher(id, name, dob, email, phone, (EnumEmployeeType)type, cers, granduaDate, rank);
                 list.Add(fresh);
                 Console.WriteLine($"{Employee.EmployeeCount} new employee ");
                 return;
@@ -193,18 +194,12 @@ namespace Ex13
                     cers.Add(cer);
                 }
             }
-            //
-            //  list[index].FullName = name;
-            //ind.DOB = dob;
-            //index.Email = email;
 
-
-            //
-            if (type == 0)
+            if (type == (int)EnumEmployeeType.Experience)
             {
                 var year = _singletonInputData.InputInt("\tEnter the Id", 0);
                 var proskill = _singletonInputData.InputString("Enter the skill ");
-                Experience e = new Experience(id, name, dob, email, phone,(EnumEmployeeType)type, cers, year, proskill);
+                Experience e = new Experience(id, name, dob, email, phone, (EnumEmployeeType)type, cers, year, proskill);
                 list[index] = e;
                 return;
             }
@@ -213,10 +208,8 @@ namespace Ex13
 
                 DateTime granduaDate = _singletonInputData.InputDateTime("Enter the Date (MM-dd-yyyy): ");
                 var rank = _singletonInputData.InputInt("Enter the rank ");
-                Fresher fresh = new Fresher(id, name, dob, email, phone,(EnumEmployeeType)type, cers, granduaDate, rank);
+                Fresher fresh = new Fresher(id, name, dob, email, phone, (EnumEmployeeType)type, cers, granduaDate, rank);
                 list[index] = fresh;
-
-
                 return;
             }
             if (type == 2)
@@ -246,7 +239,6 @@ namespace Ex13
             if (type == EnumEmployeeType.Experience)
             {
 
-
                 foreach (var employee in result)
                 {
 
@@ -258,7 +250,6 @@ namespace Ex13
             else if (type == EnumEmployeeType.Fresher)
             {
 
-
                 foreach (var employee in result)
                 {
 
@@ -269,7 +260,6 @@ namespace Ex13
             }
             else if (type == EnumEmployeeType.Intern)
             {
-                ;
 
                 foreach (var employee in result)
                 {
@@ -281,7 +271,7 @@ namespace Ex13
             }
         }
 
-       
+
 
     }
 }

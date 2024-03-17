@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace Ex15.Entity
 {
-    internal class LearningOutcome
+    internal class Result
     {
-       
+        public int ResultId { get; set; }
         public double Score { get; set; }
         public int Semester { get; set; }
-        public string StudentId { get; set; }
-        public LearningOutcome()
+        public int StudentId { get; set; }
+        public Result()
         {
         }
 
-        public LearningOutcome( double score, int semester, string studentId)
+        public Result(int resultId, double score, int semester, int studentId)
         {
-            StudentId = studentId;
+            ResultId = resultId;
             Score = score;
             Semester = semester;
+            StudentId = studentId;
         }
     }
 }

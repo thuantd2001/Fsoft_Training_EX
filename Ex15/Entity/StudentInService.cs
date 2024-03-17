@@ -6,22 +6,33 @@ using System.Threading.Tasks;
 
 namespace Ex15.Entity
 {
-    internal class InServiceStudent : Student
+    internal class StudentInService : Student
     {
        
 
         public string JointPlace { get;set; }
 
-        public InServiceStudent()
+        public StudentInService()
         {
         }
 
-        public InServiceStudent(string id, string fullName, DateTime dOB, int yearOfAdmission, double entryPoint, int departmentId,string jointPlace) 
+        public StudentInService(int id, string fullName, DateTime dOB, int yearOfAdmission, double entryPoint, int departmentId,string jointPlace) 
             : base(id, fullName, dOB, yearOfAdmission, entryPoint, departmentId)
         {
             JointPlace = jointPlace;
         }
 
+        public StudentInService(Student s, string jointPlace)
+        {
+            Id = s.Id;
+            FullName = s.FullName;
+            DOB = s.DOB;
+            YearOfAdmission = s.YearOfAdmission;
+            EntryPoint = s.EntryPoint;
+            DepartmentId = s.DepartmentId;
+            JointPlace = jointPlace;
+
+        }
      
         public override string ToString()
         {

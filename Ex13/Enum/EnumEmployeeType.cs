@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ex13
+namespace Ex13.Enum
 {
     public enum EnumEmployeeType
     {
-        Experience =0,
-        Fresher =1,
-        Intern =2,
+        Experience = 0,
+        Fresher = 1,
+        Intern = 2,
 
     }
 }

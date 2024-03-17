@@ -1,8 +1,8 @@
 ﻿using Ex15.Service;
 
-StudentService manage = new StudentService();
+ManageService manage = new ManageService();
 manage.InnitData();
-//manage.DisplayInServiceStudent();
+manage.Menu();
 //manage.AddMoreInServiceStudent();
 //manage.DisplayInServiceStudent();
 
